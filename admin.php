@@ -7,24 +7,7 @@
         <link rel="stylesheet" href="style.css"/>
     </head>
     <body>
-        <header>
-            <img src="resoc.jpg" alt="Logo de notre réseau social"/>
-            <nav id="menu">
-                <a href="news.php">Actualités</a>
-                <a href="wall.php?user_id=5">Mur</a>
-                <a href="feed.php?user_id=5">Flux</a>
-                <a href="tags.php?tag_id=1">Mots-clés</a>
-            </nav>
-            <nav id="user">
-                <a href="#">Profil</a>
-                <ul>
-                    <li><a href="settings.php?user_id=5">Paramètres</a></li>
-                    <li><a href="followers.php?user_id=5">Mes suiveurs</a></li>
-                    <li><a href="subscriptions.php?user_id=5">Mes abonnements</a></li>
-                </ul>
-
-            </nav>
-        </header>
+       <?php include('header.php');?>
 
         <?php
         /**
@@ -91,21 +74,21 @@
 
                 /*
                  * Etape 5 : @todo : Afficher les utilisatrices en s'inspirant de ce qui a été fait dans news.php
-                 * Attention à en pas oublier de modifier dans le lien les "user_id=123" avec l'id de l'utilisatrice
+                 * Attention à ne pas oublier de modifier dans le lien les "user_id=123" avec l'id de l'utilisatrice
                  */
                 while ($tag = $lesInformations->fetch_assoc())
                 {
                     echo "<pre>" . print_r($tag, 1) . "</pre>";
                     ?>
                     <article>
-                        <h3> <?php echo $tag['alias']?> </h3>
+                        <h3><a href = "wall.php?user_id=<?php echo $tag[id]?>"><?php echo $tag['alias']?></a></h3> 
                         <p> id:<?php echo $tag['id']?></p>
                         <nav>
-                            <a href="wall.php?user_id=123">Mur</a>
-                            | <a href="feed.php?user_id=123">Flux</a>
-                            | <a href="settings.php?user_id=123">Paramètres</a>
-                            | <a href="followers.php?user_id=123">Suiveurs</a>
-                            | <a href="subscriptions.php?user_id=123">Abonnements</a>
+                            <a href="wall.php?user_id=<?php echo $tag[id]?>">Mur</a>
+                            | <a href="feed.php?user_id=<?php echo $tag[id]?>">Flux</a>
+                            | <a href="settings.php?user_id=<?php echo $tag[id]?>">Paramètres</a>
+                            | <a href="followers.php?user_id=<?php echo $tag[id]?>">Suiveurs</a>
+                            | <a href="subscriptions.php?user_id=<?php echo $tag[id]?>">Abonnements</a>
                         </nav>
                     </article>
                 <?php } ?>
