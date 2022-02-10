@@ -82,7 +82,7 @@
                         <h3>
                             <?php echo $post['created'] ?>
                         </h3>
-                        <address>par <a href = "wall.php?user_id=<?php echo $tag[id]?>"><?php echo $post['author_name'] ?></a></address>
+                        <address>par <a href = "wall.php?user_id=<?php echo $userId?>"><?php echo $post['author_name'] ?></a></address>
                         <div>
                             <?php echo $post['content'] ?> </div>                                            
                         <footer>

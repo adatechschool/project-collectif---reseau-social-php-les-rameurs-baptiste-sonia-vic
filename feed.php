@@ -57,7 +57,8 @@
                     SELECT posts.content,
                     posts.created,
                     users.alias as author_name,  
-                    count(likes.id) as like_number,  
+                    count(likes.id) as like_number, 
+                    posts.user_id, 
                     GROUP_CONCAT(DISTINCT tags.label) AS taglist 
                     FROM followers 
                     JOIN users ON users.id=followers.followed_user_id
@@ -82,7 +83,7 @@
                  while ($post = $lesInformations->fetch_assoc())
                 {
 
-                    //echo "<pre>" . print_r($post, 1) . "</pre>";
+                   // echo "<pre>" . print_r($post, 1) . "</pre>";
                     
                     $mytags = explode(',', $post[taglist]); 
                  
@@ -91,7 +92,7 @@
                     <h3>
                         <time><?php echo $post['created'] ?></time>
                     </h3>
-                    <address>par<a href ="wall.php?user_id=<?php echo $tag[id]?>"><?php echo $post['author_name'] ?></a></address>
+                    <address>par <a href ="wall.php?user_id=<?php echo $post['user_id'] ?>"><?php echo $post['author_name'] ?></a></address>
                     <div>
                         <?php echo $post['content'] ?>
                     </div>                                            
