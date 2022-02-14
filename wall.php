@@ -79,7 +79,24 @@ session_start();
                             echo "Message posté";
                         }
                     }
-                
+                 $enCoursFollow = isset($_POST['follow']);
+                    if ($enCoursFollow) {
+                      $followSql = "INSERT INTO followers "
+                                . "(id, followed_user_id, following_user_id) "
+                                . "VALUES (NULL, "
+                                . $userId . ", "
+                                . $_SESSION["connected_id"] . ")"; 
+                        echo $followSql;
+                         $ok = $mysqli->query($followSql);
+                        if ( ! $ok)
+                        {
+                            echo "L'abonnement a échoué" . $mysqli->error;
+                        } else
+                        {
+                            echo "Vous êtes abonné";
+                        }
+                    }
+                    
                 /**
                  * Etape 3: récupérer tous les messages de l'utilisatrice
                  */
@@ -140,7 +157,14 @@ session_start();
                         <input type='submit'>
                     </form>              
                 
-                <?php } ?>
+                <?php } else { ?>
+                    <form action="wall.php?user_id=<?php echo $userId?>" method="post">
+                        <input type='hidden' name='follow' value='true'>
+                        <input type='submit' value='follow'>
+                    </form>              
+                <?php } 
+                
+                ?>
 
             </main>
         </div>
