@@ -96,12 +96,45 @@ session_start();
                             echo "Vous êtes abonné";
                         }
                     }
+                    // limiter nb de likes à 1 > a finir 
+                    $enCoursLike = isset($_POST['like']);
+                    if ($enCoursLike) {
+                        $jeSuisConnecte = isset ($_SESSION["connected_id"]);
+                        if ($jeSuisConnecte) {
+                            // verifier si deja like
+                            $dejaLike = "SELECT * FROM likes 
+                            WHERE user_id = " . $_SESSION["connected_id"] . " AND post_id = " . $_POST["post_id"] . ";";
+                            // si deja like 
+                            $dejaLikeResult = $mysqli->query($dejaLike);
+                            $bidon = $dejaLikeResult->fetch_assoc();
+                            
+                            echo "<pre>" . print_r($bidon) . "</pre>";
+                            if ($bidon != 1) {
+                                $likedPost = intval($mysqli->real_escape_string($_POST['post_id']));
+                                $likeSql = "INSERT INTO likes "
+                               . "(id, user_id, post_id) "
+                               . "VALUES (NULL, "
+                               . $_SESSION["connected_id"] . ", "
+                               . $likedPost . ")"; 
+                               $ok = $mysqli->query($likeSql);
+                                if ( ! $ok) {
+                                        echo "Votre 'like' n'a pas été pris en compte" . $mysqli->error;
+                                    } else {
+                                        echo "Vous avez liké ce post";
+                                    };
+                            } else {
+                                echo "Déjà liké";
+                            } 
+                        } else {
+                           echo "Connectez-vous !";
+                        }
+                    }
                     
                 /**
                  * Etape 3: récupérer tous les messages de l'utilisatrice
                  */
                 $laQuestionEnSql = "
-                    SELECT posts.content, posts.created, users.alias as author_name, 
+                    SELECT posts.content, posts.created, users.alias as author_name, posts.id as post_id,
                     COUNT(likes.id) as like_number, GROUP_CONCAT(DISTINCT tags.label) AS taglist 
                     FROM posts
                     JOIN users ON  users.id=posts.user_id
@@ -136,7 +169,11 @@ session_start();
                             <?php echo $post['content'] ?> </div>                                            
                         <footer>
                             <small>♥ <?php echo $post['like_number'] ?></small>
-                            
+                            <form action="wall.php?user_id=<?php echo $userId?>" method="post">
+                            <input type='hidden' name='like' value='true'>
+                            <input type='hidden' name='post_id' value="<?php echo $post['post_id']?>">
+                            <input type='submit' value='like'>
+                            </form>
                             <?php for($i = 0;$i < count($mytags) ; $i++){
                                 echo "<a href=''> #"
                                 . $mytags[$i] .
