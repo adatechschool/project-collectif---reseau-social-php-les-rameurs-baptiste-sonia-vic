@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!doctype html>
 <html lang="fr">
     <head>
@@ -35,7 +38,6 @@
                 $lesInformations = $mysqli->query($laQuestionEnSql);
                 $user = $lesInformations->fetch_assoc();
                 //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par l'alias et effacer la ligne ci-dessous
-                echo "<pre>" . print_r($user, 1) . "</pre>";
                 ?>
                 <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
@@ -46,7 +48,38 @@
                 </section>
             </aside>
             <main>
-                <?php
+                <?php 
+                $enCoursDeTraitement = isset($_POST['message']);
+                    if ($enCoursDeTraitement)
+                    {
+                        $authorId = $userId;
+                        $postContent = $_POST['message'];
+
+
+                        //Etape 3 : Petite sécurité
+                        // pour éviter les injections sql : https://www.w3schools.com/sql/sql_injection.asp
+                        $authorId = intval($mysqli->real_escape_string($authorId));
+                        $postContent = $mysqli->real_escape_string($postContent);
+                        //Etape 4 : construction de la requete
+                        $lInstructionSql = "INSERT INTO posts "
+                                . "(id, user_id, content, created, parent_id) "
+                                . "VALUES (NULL, "
+                                . $authorId . ", "
+                                . "'" . $postContent . "', "
+                                . "NOW()," 
+                                . "NULL". ")";
+                        echo $lInstructionSql;
+                        // Etape 5 : execution
+                        $ok = $mysqli->query($lInstructionSql);
+                        if ( ! $ok)
+                        {
+                            echo "Impossible d'ajouter le message: " . $mysqli->error;
+                        } else
+                        {
+                            echo "Message posté";
+                        }
+                    }
+                
                 /**
                  * Etape 3: récupérer tous les messages de l'utilisatrice
                  */
@@ -71,10 +104,9 @@
                 /**
                  * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
                  */
-                while ($post = $lesInformations->fetch_assoc())
+        
+               while ($post = $lesInformations->fetch_assoc())
                 {
-
-                    echo "<pre>" . print_r($post, 1) . "</pre>";
                     
                     $mytags = explode(',', $post[taglist]); 
                     ?>                
@@ -95,8 +127,20 @@
                             }?>
                         </footer>
                     </article>
+                <?php } 
+                    
+                if ($_SESSION["connected_id"] == $userId) {
+                    ?>  
+                   <form action="wall.php?user_id=<?php echo $userId?>" method="post">
+                        <input type='hidden' name='???' value='achanger'>
+                        <dl>
+                            <dt><label for='message'>Message</label></dt>
+                            <dd><textarea name='message'></textarea></dd>
+                        </dl>
+                        <input type='submit'>
+                    </form>              
+                
                 <?php } ?>
-
 
             </main>
         </div>
