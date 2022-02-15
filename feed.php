@@ -81,12 +81,19 @@ session_start();
                 if ( ! $lesInformations)
                 {
                     echo("Échec de la requete : " . $mysqli->error);
-                }
+                };
 
                 /**
                  * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
                  * A vous de retrouver comment faire la boucle while de parcours...
                  */
+                $jeSuisConnecte = isset($_SESSION["connected_id"]);
+                
+                if(!$jeSuisConnecte) { ?>
+                    <p> Connectez-vous ! </p>
+                <?php }
+                else {
+                 
                  while ($post = $lesInformations->fetch_assoc())
                 {
 
@@ -118,6 +125,7 @@ session_start();
                     </footer>
                 </article>
                 <?php
+                };
                 }
                  ?>
 

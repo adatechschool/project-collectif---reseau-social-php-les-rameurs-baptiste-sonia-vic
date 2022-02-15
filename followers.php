@@ -39,6 +39,13 @@ session_start();
                 $lesInformations = $mysqli->query($laQuestionEnSql);
                 // Etape 4: à vous de jouer
                 //@todo: faire la boucle while de parcours des abonnés et mettre les bonnes valeurs ci dessous 
+                $jeSuisConnecte = isset($_SESSION["connected_id"]);
+                
+                if(!$jeSuisConnecte) { ?>
+                    <p> Connectez-vous ! </p>
+                <?php }
+                else {
+                
                 while($user = $lesInformations->fetch_assoc()) {
                 ?>
                 <article>
@@ -47,6 +54,7 @@ session_start();
                     <p>id: <?php echo $user['id']?></p>                    
                 </article>
                 <?php
+                };
                 }
                 ?>
             </main>

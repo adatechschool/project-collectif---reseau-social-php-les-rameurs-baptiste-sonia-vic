@@ -66,7 +66,12 @@ session_start();
                  * Etape 4: à vous de jouer
                  */
                 //@todo: afficher le résultat de la ligne ci dessous, remplacer les valeurs ci-après puis effacer la ligne ci-dessous
-                echo "<pre>" . print_r($user, 1) . " OK </pre>";
+                $jeSuisConnecte = isset($_SESSION["connected_id"]);
+                
+                if(!$jeSuisConnecte) { ?>
+                    <p> Connectez-vous ! </p>
+                <?php }
+                else {
                 ?>                
                 <article class='parameters'>
                 
@@ -86,6 +91,8 @@ session_start();
                     </dl>
 
                 </article>
+                <?php }
+                ?>  
             </main>
         </div>
     </body>
