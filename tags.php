@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!doctype html>
 <html lang="fr">
     <head>
@@ -52,12 +56,14 @@
                 /**
                  * Etape 3: récupérer tous les messages avec un mot clé donné
                  */
+                 include('like.php');
                 $laQuestionEnSql = "
                     SELECT posts.content,
                     posts.created,
                     users.alias as author_name,  
                     count(likes.id) as like_number,  
                     posts.user_id,
+                    posts.id as post_id,
                     GROUP_CONCAT(DISTINCT tags.label) AS taglist 
                     FROM posts_tags as filter 
                     JOIN posts ON posts.id=filter.post_id
@@ -88,6 +94,11 @@
                             <time> <?php echo $post['created']?></time>
                         </h3>
                         <address>par <a href = "wall.php?user_id=<?php echo $post['user_id']?>"><?php echo $post['author_name']?></a></address>
+                         <form action="tags.php?tag_id=<?php echo $tagId?>" method="post">
+                            <input type='hidden' name='like' value='true'>
+                            <input type='hidden' name='post_id' value="<?php echo $post['post_id']?>">
+                            <input type='submit' value='like'>
+                            </form>
                         <div>
                             <?php echo $post['content']?>
                         </div>                                            
