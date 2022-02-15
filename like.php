@@ -4,6 +4,7 @@
                         $jeSuisConnecte = isset ($_SESSION["connected_id"]);
                         if ($jeSuisConnecte) {
                             // verifier si deja like
+                            $likedPost = intval($mysqli->real_escape_string($_POST['post_id']));
                             $dejaLike = "SELECT * FROM likes 
                             WHERE user_id = " . $_SESSION["connected_id"] . " AND post_id = " . $_POST["post_id"] . ";";
                             // si deja like 
@@ -13,8 +14,8 @@
                             //    echo "blabla"; 
                             // };
                             // echo "<pre> OKKK" . print_r($bidon) . "</pre>";
+                            
                             if (!$bidon) {
-                                $likedPost = intval($mysqli->real_escape_string($_POST['post_id']));
                                 $likeSql = "INSERT INTO likes "
                                . "(id, user_id, post_id) "
                                . "VALUES (NULL, "
@@ -27,7 +28,9 @@
                                         echo "Vous avez liké ce post";
                                     };
                             } else {
-                                echo "Déjà liké";
+                                $unlikeSql = "DELETE FROM likes
+                                        WHERE post_id = " . $likedPost . " AND user_id = " . $_SESSION["connected_id"] . ";"; 
+                                        $ok = $mysqli->query($unlikeSql);
                             } 
                         } else {
                            echo "Connectez-vous !";
