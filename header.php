@@ -1,7 +1,8 @@
 <!doctype html>
    
    <header>
-            <?php $jeSuisConnecte = isset ($_SESSION["connected_id"]); ?>
+            <?php 
+            $jeSuisConnecte = isset ($_SESSION["connected_id"]); ?>
             
             
             <a href='admin.php'><img src="resoc.jpg" alt="Logo de notre réseau social"/></a>
