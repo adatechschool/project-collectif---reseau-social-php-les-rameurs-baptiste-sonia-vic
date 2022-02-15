@@ -1,13 +1,13 @@
 body{
-    background-color: rgb(0, 51, 11);
+    background-color: rgb(147, 247, 217);
     font-family: Arial;
 }
 
-a{text-decoration: none; color:black;}
+a{text-decoration: none; color: 	rgb(255,69,0);}
 a:hover{text-decoration: underline;}
 
 body>header{
-    background-color: #fff;
+    background-color: 	rgb(255,255,224);
     display:flex;
     width:80em;
     margin:0 auto 2em auto;    
@@ -21,17 +21,17 @@ body>header #menu {
     display:flex;
     width:50%;
     align-items: stretch;
-    border-left: 1px solid #99b;
+    border-left: 1px solid rgb(255,127,80);
 }
 body>header #menu a{
     flex:1;
     text-align: center;
     padding-top:2em;
-    border-right: 1px solid #99b;
+    border-right: 1px solid 	rgb(14, 231, 166);
 }
 body>header a:hover
 {
-    background-color: #99b;
+    background-color: 	rgb(147, 247, 217);
 }
 body>header ul{list-style: none;}
 body>header #user
@@ -74,7 +74,7 @@ body>header #user:hover ul{
     margin:0 auto 2em auto;
 }
 #wrapper aside{
-    background-color: #fff;
+    background-color: rgb(65, 159, 247);
     flex:1;
     padding:1em;
     border-radius: 1em;    
@@ -92,7 +92,7 @@ body>header #user:hover ul{
     overflow-y:  scroll;
 }
 #wrapper main article{
-    background-color: #fff;
+    background-color: 	rgb(255,255,224);
     padding:1em;
     margin-bottom: 1em ;
     border-radius: 1em;
@@ -124,11 +124,11 @@ body>header #user:hover ul{
 
 #wrapper.admin{flex-direction: row-reverse}
 #wrapper.admin aside{flex:1;margin-left:1em;border-radius:0;padding:0;}
-#wrapper.admin main{flex:2;background-color: #fff;border-radius: 0;padding:0;}
+#wrapper.admin main{flex:2;background-color: rgb(175, 21, 21);border-radius: 0;padding:0;}
 #wrapper.admin h2{text-align: center;}
 #wrapper.admin h3{margin:0;}
 #wrapper.admin nav{text-align: right;}
-#wrapper.admin article{border:1px solid #ddd;border-radius: 1em;padding:1em;margin:1em;}
+#wrapper.admin article{border:1px solid rgb(6, 114, 73);border-radius: 1em;padding:1em;margin:1em;}
 #wrapper.admin article p{float:left;margin:0;}
 
 
@@ -152,7 +152,7 @@ body>header #user:hover ul{
 }
 
 pre{
-    color:#aaa;
+    color: rgb(255,0,0);
 }
 
 form dl dt{float:left;font-weight: bold;line-height: 1.5em;}
