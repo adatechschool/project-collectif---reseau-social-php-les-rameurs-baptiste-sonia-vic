@@ -10,7 +10,7 @@ session_start();
         <link rel="stylesheet" href="style.css"/>
     </head>
     <body>
-        <?php include('header.php') ?> 
+        <?php include('header.php'); ?> 
 
         <div id="wrapper" >
 
