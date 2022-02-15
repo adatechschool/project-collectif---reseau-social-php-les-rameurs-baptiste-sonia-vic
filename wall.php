@@ -79,6 +79,7 @@ session_start();
                             echo "Message posté";
                         }
                     }
+                    
                  $enCoursFollow = isset($_POST['follow']);
                     if ($enCoursFollow) {
                       $followSql = "INSERT INTO followers "
@@ -107,9 +108,11 @@ session_start();
                             // si deja like 
                             $dejaLikeResult = $mysqli->query($dejaLike);
                             $bidon = $dejaLikeResult->fetch_assoc();
-                            
-                            echo "<pre>" . print_r($bidon) . "</pre>";
-                            if ($bidon != 1) {
+                            //if (in_array($_SESSION["connected_id"], $bidon)) {
+                            //    echo "blabla"; 
+                            // };
+                            // echo "<pre> OKKK" . print_r($bidon) . "</pre>";
+                            if (!$bidon) {
                                 $likedPost = intval($mysqli->real_escape_string($_POST['post_id']));
                                 $likeSql = "INSERT INTO likes "
                                . "(id, user_id, post_id) "
