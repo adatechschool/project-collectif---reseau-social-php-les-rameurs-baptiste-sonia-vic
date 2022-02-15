@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!doctype html>
 <html lang="fr">
     <head>
@@ -7,7 +10,8 @@
         <link rel="stylesheet" href="style.css"/>
     </head>
     <body>
-        <?php include('header.php');?>
+        <?php include('header.php');
+        ?>
         <div id="wrapper">
             <?php
             /**
@@ -49,7 +53,9 @@
                 </section>
             </aside>
             <main>
+                
                 <?php
+                include('like.php');
                 /**
                  * Etape 3: récupérer tous les messages des abonnements
                  */
@@ -59,6 +65,7 @@
                     users.alias as author_name,  
                     count(likes.id) as like_number, 
                     posts.user_id, 
+                    posts.id as post_id,
                     GROUP_CONCAT(DISTINCT tags.label) AS taglist 
                     FROM followers 
                     JOIN users ON users.id=followers.followed_user_id
@@ -98,6 +105,11 @@
                     </div>                                            
                     <footer>
                         <small>♥ <?php echo $post['like_number'] ?></small>
+                         <form action="feed.php?user_id=<?php echo $userId?>" method="post">
+                            <input type='hidden' name='like' value='true'>
+                            <input type='hidden' name='post_id' value="<?php echo $post['post_id']?>">
+                            <input type='submit' value='like'>
+                         </form>
                          <?php for($i = 0;$i < count($mytags) ; $i++){
                                 echo "<a href=''> #"
                                 . $mytags[$i] .

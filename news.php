@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>    
 <!doctype html>
 <html lang="fr">
     <head>
@@ -59,8 +62,9 @@
                     echo("<p>Indice: Vérifiez les parametres de <code>new mysqli(...</code></p>");
                     echo "</article>";
                     exit();
-                }
-
+                };
+                
+                include('like.php');
                 // Etape 2: Poser une question à la base de donnée et récupérer ses informations
                 // cette requete vous est donnée, elle est complexe mais correcte, 
                 // si vous ne la comprenez pas c'est normal, passez, on y reviendra
@@ -69,7 +73,8 @@
                     posts.created,
                     users.alias as author_name,  
                     count(likes.id) as like_number,
-                    posts.user_id,   
+                    posts.user_id,
+                    posts.id as post_id,    
                     GROUP_CONCAT(DISTINCT tags.label) AS taglist 
                     FROM posts
                     JOIN users ON  users.id=posts.user_id
@@ -114,6 +119,12 @@
                         </div>
                         <footer>
                             <small>♥ <?php echo $post['like_number'] ?> </small>
+                            <form action="news.php" method="post">
+                            <input type='hidden' name='like' value='true'>
+                            <input type='hidden' name='post_id' value="<?php echo $post['post_id']?>">
+                            <input type='submit' value='like'>
+                            </form>
+                            
                             <a href="">#<?php echo $post['taglist'] ?></a>,
                         </footer>
                     </article>
