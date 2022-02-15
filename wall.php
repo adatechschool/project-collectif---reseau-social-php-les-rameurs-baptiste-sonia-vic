@@ -68,7 +68,7 @@ session_start();
                                 . "'" . $postContent . "', "
                                 . "NOW()," 
                                 . "NULL". ")";
-                        echo $lInstructionSql;
+                        // echo $lInstructionSql;
                         // Etape 5 : execution
                         $ok = $mysqli->query($lInstructionSql);
                         if ( ! $ok)
@@ -87,7 +87,7 @@ session_start();
                                 . "VALUES (NULL, "
                                 . $userId . ", "
                                 . $_SESSION["connected_id"] . ")"; 
-                        echo $followSql;
+                        // echo $followSql;
                          $ok = $mysqli->query($followSql);
                         if ( ! $ok)
                         {
