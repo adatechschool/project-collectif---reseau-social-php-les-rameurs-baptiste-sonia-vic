@@ -49,6 +49,7 @@ session_start();
             </aside>
             <main>
                 <?php 
+                include('tagsearch.php'); 
                 $enCoursDeTraitement = isset($_POST['message']);
                     if ($enCoursDeTraitement)
                     {
@@ -77,7 +78,9 @@ session_start();
                         } else
                         {
                             echo "Message posté";
-                        }
+                        };
+                        
+                        findtags($postContent); 
                     }
                     
                  $enCoursFollow = isset($_POST['follow']);
