@@ -25,6 +25,7 @@ session_start();
                     /**
                      * TRAITEMENT DU FORMULAIRE
                      */
+                    
                     // Etape 1 : vérifier si on est en train d'afficher ou de traiter le formulaire
                     // si on recoit un champs email rempli il y a une chance que ce soit un traitement
                     $enCoursDeTraitement = isset($_POST['email']);
@@ -67,6 +68,8 @@ session_start();
                             // Etape 7 : Se souvenir que l'utilisateur s'est connecté pour la suite
                             // documentation: https://www.php.net/manual/fr/session.examples.basic.php
                             $_SESSION['connected_id']=$user['id'];
+                            header('Location: wall.php?user_id=' . $user["id"]);
+                            exit();
                         }
                     }
                     ?>                     

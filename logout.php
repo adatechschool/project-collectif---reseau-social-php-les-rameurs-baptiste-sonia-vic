@@ -2,5 +2,6 @@
 session_start();  
 //session_destroy sert à detruire la session  
 session_destroy();  
-echo "Vous êtes  déconnecté";    
+header('Location: login.php');
+exit();    
 ?>  
