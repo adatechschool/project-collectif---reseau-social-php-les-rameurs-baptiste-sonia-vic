@@ -78,9 +78,14 @@ session_start();
                         } else
                         {
                             echo "Message posté";
+                            
+                            $postIdSql = "SELECT id FROM posts WHERE content= '$postContent' "; 
+                            $okResult = $mysqli->query($postIdSql);
+                            $postId = $okResult->fetch_assoc();
+                            
                         };
                         
-                        findtags($postContent); 
+                        findtags($postContent, $postId['id']); 
                     }
                     
                  $enCoursFollow = isset($_POST['follow']);

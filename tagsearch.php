@@ -1,7 +1,7 @@
 <?php
 
 
-function findTags($message){
+function findTags($message, $postId){
    $mysqli = new mysqli("localhost", "root", "root", "socialnetwork");
    if (strstr($message, "#")) {
     $message = explode(" ", $message);
@@ -22,9 +22,22 @@ function findTags($message){
                         {
                             echo "Tag ajoute";
                         }
-            // $gettagID = "SELE" 
-          //  $addTagPost = "INSERT INTO posts_tags "
-          //                      . "(id, post_id, tag_id)"
+            $getTagId = "SELECT id FROM tags WHERE label= '$tag' ";
+            $result = $mysqli->query($getTagId);
+            $tagId = $result->fetch_assoc(); 
+            $addTagPost = "INSERT INTO posts_tags "
+                              . "(id, post_id, tag_id)" 
+                              ."VALUES (NULL, "
+                              . $postId .","
+                              . $tagId['id'] .");";
+            $test = $mysqli->query($addTagPost);
+                    if (! $test)
+                    {
+                        echo "Impossible d'ajouter l'id du tag" . $mysqli->error;
+                    } else
+                    {
+                     echo "Tag Id ajoute";   
+                    }                 
            }
        }
    }
