@@ -124,11 +124,11 @@ body>header #user:hover ul{
 
 #wrapper.admin{flex-direction: row-reverse}
 #wrapper.admin aside{flex:1;margin-left:1em;border-radius:0;padding:0;}
-#wrapper.admin main{flex:2;background-color: rgb(255,69,0);border-radius: 0;padding:0;}
+#wrapper.admin main{flex:2;background-color: rgb(252, 150, 55);border-radius: 0;padding:0;}
 #wrapper.admin h2{text-align: center;}
 #wrapper.admin h3{margin:0;}
 #wrapper.admin nav{text-align: right;}
-#wrapper.admin article{border:1px solid rgb(6, 114, 73);border-radius: 1em;padding:1em;margin:1em;}
+#wrapper.admin article{border:1px solid rgb(255,255,224);border-radius: 1em;padding:1em;margin:1em;}
 #wrapper.admin article p{float:left;margin:0;}
 
 
