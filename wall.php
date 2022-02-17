@@ -146,16 +146,19 @@ session_start();
                         <div>
                             <?php echo $post['content'] ?> </div>                                            
                         <footer>
-                            <small>♥ <?php echo $post['like_number'] ?></small>
+                            <small>
                             <form action="wall.php?user_id=<?php echo $userId?>" method="post">
                             <input type='hidden' name='like' value='true'>
                             <input type='hidden' name='post_id' value="<?php echo $post['post_id']?>">
-                            <input type='submit' value='like'>
+                            <input type='submit' value='♥'>
                             </form>
+                            <?php echo $post['like_number'] ?></small>
+                            
                             <?php for($i = 0;$i < count($mytags) ; $i++){
-                                echo "<a href=''> #"
+                                
+                                echo "<p>" . "#"
                                 . $mytags[$i] .
-                                "</a>";
+                                "</p>";
                             }?>
                         </footer>
                     </article>
