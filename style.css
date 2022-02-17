@@ -152,7 +152,7 @@ body>header #user:hover ul{
 }
 
 pre{
-    color: rgb(255,0,0);
+    color: rgb(255,255,224);
 }
 
 form dl dt{float:left;font-weight: bold;line-height: 1.5em;}
