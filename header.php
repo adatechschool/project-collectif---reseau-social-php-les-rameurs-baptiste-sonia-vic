@@ -5,7 +5,7 @@
             $jeSuisConnecte = isset ($_SESSION["connected_id"]); ?>
             
             
-            <a href='admin.php'><img src="resoc.jpg" alt="Logo de notre réseau social"/></a>
+            <a href='admin.php'><img src="logo.webp" alt="Logo de notre réseau social"/></a>
             <nav id="menu">
                 <a href="news.php">Actualités</a>
                 <?php if($jeSuisConnecte) { 
