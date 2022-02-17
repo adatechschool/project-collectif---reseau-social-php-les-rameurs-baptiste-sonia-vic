@@ -94,16 +94,18 @@ session_start();
                             <time> <?php echo $post['created']?></time>
                         </h3>
                         <address>par <a href = "wall.php?user_id=<?php echo $post['user_id']?>"><?php echo $post['author_name']?></a></address>
-                         <form action="tags.php?tag_id=<?php echo $tagId?>" method="post">
-                            <input type='hidden' name='like' value='true'>
-                            <input type='hidden' name='post_id' value="<?php echo $post['post_id']?>">
-                            <input type='submit' value='like'>
-                            </form>
+                         
                         <div>
                             <?php echo $post['content']?>
                         </div>                                            
                         <footer>
-                            <small>♥ <?php echo $post['like_number']?></small>
+                            <small>
+                            <form action="tags.php?tag_id=<?php echo $tagId?>" method="post">
+                            <input type='hidden' name='like' value='true'>
+                            <input type='hidden' name='post_id' value="<?php echo $post['post_id']?>">
+                            <input type='submit' value='♥'>
+                            </form>
+                            <?php echo $post['like_number']?></small>
                             <a href=''> #<?php echo $post['taglist']?>
                                 </a>
                         </footer>
