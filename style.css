@@ -56,6 +56,64 @@ body>header #user ul{
     position: absolute;
     padding:0;
     margin:0;
+    margin-left:-5em;body{
+    background-color: rgb(255,127,80);
+    font-family: Arial;
+}
+
+a{text-decoration: none; color: 	rgb(255,69,0);}
+a:hover{text-decoration: underline;}
+
+body>header{
+    background-color: 	rgb(255,255,224);
+    display:flex;
+    width:80em;
+    margin:0 auto 2em auto;    
+    padding:0;
+    border-radius: 1em;
+}
+body>header img{
+    height:5em;
+    border-radius: 1em;
+}
+body>header #menu {
+    display:flex;
+    width:50%;
+    align-items: stretch;
+    border-left: 3px solid rgb(255,127,80);
+    border-radius: 1em;
+}
+body>header #menu a{
+    flex:1;
+    text-align: center;
+    padding-top:2em;
+    border-right: 3px solid 	rgb(14, 231, 166);
+    border-radius: 1em;
+}
+body>header a:hover
+{
+    background-color: 	rgb(147, 247, 217);
+}
+body>header ul{list-style: none;}
+body>header #user
+{
+    margin-left: auto;
+    flex:0.2;
+    border-left: 1px solid rgb(50, 50, 187);
+    border-radius: 1em;
+}
+body>header #user>a{
+    display:block;
+    text-align: center;
+    padding:2em 0;
+    width:100%;
+    border-radius: 1em;
+}
+body>header #user ul{ 
+    display: none;
+    position: absolute;
+    padding:0;
+    margin:0;
     margin-left:-5em;
     background-color: #fff;
     border: 1px solid #99b;
@@ -66,7 +124,7 @@ body>header #user ul li a{
     display:block;
     width:10em;
     padding:1em;
-    border-bottom: 1px solid #99b;
+    border-bottom: 1px solid rgb(5, 5, 75);
 }
 body>header #user:hover ul{
     display:block;
@@ -129,12 +187,12 @@ body>header #user:hover ul{
 }
 
 #wrapper.admin{flex-direction: row-reverse}
-#wrapper.admin aside{flex:1;margin-left:1em;border-radius:1em;padding:0;}
+#wrapper.admin aside{flex:1;background-color: rgb(255,255,224);margin-left:1em;border-radius:1em;padding:0;}
 #wrapper.admin main{flex:2;background-color: rgb(255,255,224);border-radius: 1em;padding:0;}
 #wrapper.admin h2{text-align: center;}
-#wrapper.admin h3{margin:0;}
-#wrapper.admin nav{text-align: right;}
-#wrapper.admin article{border:1px solid rgb(255,255,224);border-radius: 1em;padding:1em;margin:1em;}
+#wrapper.admin h3{margin:0;color: #87CEFA}
+#wrapper.admin nav{text-align: right;color: #87CEFA}
+#wrapper.admin article{border:1px solid rgb(255,69,0);border-radius: 1em;padding:1em;margin:1em;}
 #wrapper.admin article p{float:left;margin:0;}
 
 
