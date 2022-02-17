@@ -79,19 +79,19 @@ session_start();
                  * Etape 5 : @todo : Afficher les utilisatrices en s'inspirant de ce qui a été fait dans news.php
                  * Attention à ne pas oublier de modifier dans le lien les "user_id=123" avec l'id de l'utilisatrice
                  */
-                while ($tag = $lesInformations->fetch_assoc())
+                while ($users = $lesInformations->fetch_assoc())
                 {
-                    // echo "<pre>" . print_r($tag, 1) . "</pre>";
+                    // echo "<pre>" . print_r($users, 1) . "</pre>";
                     ?>
                     <article>
-                        <h3><a href = "wall.php?user_id=<?php echo $tag[id]?>"><?php echo $tag['alias']?></a></h3> 
-                        <p> id:<?php echo $tag['id']?></p>
+                        <h3><a href = "wall.php?user_id=<?php echo $users[id]?>"><?php echo $users['alias']?></a></h3> 
+                        <p> id:<?php echo $users['id']?></p>
                         <nav>
-                            <a href="wall.php?user_id=<?php echo $tag[id]?>">Mur</a>
-                            | <a href="feed.php?user_id=<?php echo $tag[id]?>">Flux</a>
-                            | <a href="settings.php?user_id=<?php echo $tag[id]?>">Paramètres</a>
-                            | <a href="followers.php?user_id=<?php echo $tag[id]?>">Suiveurs</a>
-                            | <a href="subscriptions.php?user_id=<?php echo $tag[id]?>">Abonnements</a>
+                            <a href="wall.php?user_id=<?php echo $users[id]?>">Mur</a>
+                            | <a href="feed.php?user_id=<?php echo $users[id]?>">Flux</a>
+                            | <a href="settings.php?user_id=<?php echo $users[id]?>">Paramètres</a>
+                            | <a href="followers.php?user_id=<?php echo $users[id]?>">Suiveurs</a>
+                            | <a href="subscriptions.php?user_id=<?php echo $users[id]?>">Abonnements</a>
                         </nav>
                     </article>
                 <?php } ?>

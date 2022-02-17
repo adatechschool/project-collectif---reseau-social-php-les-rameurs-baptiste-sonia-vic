@@ -13,7 +13,7 @@
 
             <aside>
                 <h2>Présentation</h2>
-                <p>Bienvenu sur notre réseau social.</p>
+                <p>Bienvenu.e.s sur notre réseau social.</p>
             </aside>
             <main>
                 <article>
